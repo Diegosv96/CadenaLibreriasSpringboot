@@ -1,6 +1,7 @@
 package com.example.CadenaLibrerias.model;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -30,16 +31,16 @@ public class Libro implements Serializable {
     private String titulo;
     @Column
     private Double precio;
+    @JsonBackReference(value = "editorial-libro")
     @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(name = "editorial_id")
-    @JsonBackReference
     private Editorial editorial;
+    @JsonBackReference(value = "autor-libro")
     @ManyToOne(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
     @JoinColumn(name = "autor_id")
-    @JsonBackReference
     private Autor autor;
+    @JsonBackReference(value = "libreria-libro")
     @ManyToMany(mappedBy = "libros",fetch = FetchType.EAGER)
-    @JsonBackReference
     private List<Libreria> librerias;
 
     public Libro(String titulo, Double precio){

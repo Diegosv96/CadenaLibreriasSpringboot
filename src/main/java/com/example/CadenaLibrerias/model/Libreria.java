@@ -1,5 +1,6 @@
 package com.example.CadenaLibrerias.model;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -13,10 +14,10 @@ import java.util.List;
 public class Libreria implements Serializable {
     public Libreria(){}
 
-    public Libreria(int id, String nombre, String dueño, String direccion, List<Libro> libros) {
+    public Libreria(int id, String nombre, String dueno, String direccion, List<Libro> libros) {
         this.id = id;
         this.nombre = nombre;
-        this.dueño = dueño;
+        this.dueno = dueno;
         this.direccion = direccion;
         this.libros = libros;
     }
@@ -27,16 +28,17 @@ public class Libreria implements Serializable {
     @Column
     private String nombre;
     @Column
-    private String dueño;
+    private String dueno;
     @Column
     private String direccion;
+
     @ManyToMany(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
     @JoinTable(name = "librerias_libros", joinColumns = @JoinColumn(name = "libreria_id"),inverseJoinColumns = @JoinColumn(name = "libro_id"))
     private List<Libro> libros;
 
-    public Libreria(String nombre, String dueño, String direccion){
+    public Libreria(String nombre, String dueno, String direccion){
         this.nombre = nombre;
-        this.dueño = dueño;
+        this.dueno = dueno;
         this.direccion = direccion;
     }
 
@@ -56,12 +58,12 @@ public class Libreria implements Serializable {
         this.nombre = nombre;
     }
 
-    public String getDueño() {
-        return dueño;
+    public String getDueno() {
+        return dueno;
     }
 
-    public void setDueño(String dueño) {
-        this.dueño = dueño;
+    public void setDueno(String dueno) {
+        this.dueno = dueno;
     }
 
     public String getDireccion() {

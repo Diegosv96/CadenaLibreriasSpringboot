@@ -1,5 +1,6 @@
 package com.example.CadenaLibrerias.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -29,8 +30,9 @@ public class Autor implements Serializable {
     private String nombre;
     @Column
     private String apellido;
-    @Column(name="fechaNacimiento")
+    @Column(name="fecha_nacimiento")
     private Date fechaNac;
+
     @OneToMany(mappedBy = "autor", fetch = FetchType.EAGER)
     private List<Libro> libros;
 
