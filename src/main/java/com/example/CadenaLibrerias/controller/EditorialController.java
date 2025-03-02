@@ -22,6 +22,6 @@ public class EditorialController {
     }
     @GetMapping("/get")
     public ResponseEntity<List<Editorial>> getEditoriales(){
-        return new ResponseEntity<>(editorialService.obtenerEditoriales(),HttpStatus.OK)
-;    }
+        return new ResponseEntity<>(editorialService.obtenerEditoriales(),HttpStatus.OK);
+    }
 }
